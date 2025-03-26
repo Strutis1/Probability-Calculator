@@ -1,13 +1,16 @@
 package com.mif.crew.probabilitycalculator;
 
+import Utility.Calculation;
+import Utility.CalculatorLogic;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TextArea;
+import javafx.scene.chart.LineChart;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 
-import static javafx.scene.input.KeyCode.NUMPAD0;
+import javax.script.ScriptException;
 
 public class CalcController {
 
@@ -36,6 +39,12 @@ public class CalcController {
     private Button eightButton;
 
     @FXML
+    private LineChart<?, ?> equationChart;
+
+    @FXML
+    private TableColumn<Calculation, String> equationColumn;
+
+    @FXML
     private TextArea equationText;
 
     @FXML
@@ -48,7 +57,16 @@ public class CalcController {
     private Tab graphTab;
 
     @FXML
+    private Tab historyTab;
+
+    @FXML
+    private TableView<Calculation> historyTable;
+
+    @FXML
     private Tab infoTab;
+
+    @FXML
+    private Button leftBracketButton;
 
     @FXML
     private Button multButton;
@@ -60,10 +78,16 @@ public class CalcController {
     private Button oneButton;
 
     @FXML
-    private Button plusbutton;
+    private Button plusButton;
 
     @FXML
     private Button raisePowerButton;
+
+    @FXML
+    private TableColumn<Calculation, String> resultColumn;
+
+    @FXML
+    private Button rightBracketButton;
 
     @FXML
     private Button sevenButton;
@@ -89,13 +113,21 @@ public class CalcController {
     @FXML
     private Button zeroButton;
 
-    @FXML
-    private Button leftBracketButton;
+    ObservableList<Calculation> equationList = FXCollections.observableArrayList();
 
-    @FXML
-    private Button rightBracketButton;
 
     public void initialize(){
+        historyTable.setItems(equationList);
+        equationColumn.setCellValueFactory(cellData -> cellData.getValue().equationProperty());
+        resultColumn.setCellValueFactory(cellData -> cellData.getValue().resultProperty());
+
+        equationText.setOnKeyPressed(event -> {
+            if(event.getCode() == KeyCode.ENTER){
+                handleCalculations();
+                equationText.positionCaret(equationText.getText().length());
+            }
+        });
+
         zeroButton.setOnAction(event -> {
             equationText.appendText("0");
         });
@@ -132,7 +164,7 @@ public class CalcController {
         multButton.setOnAction(event -> {
             equationText.appendText("*");
         });
-        plusbutton.setOnAction(event -> {
+        plusButton.setOnAction(event -> {
             equationText.appendText("+");
         });
         subButton.setOnAction(event -> {
@@ -151,7 +183,24 @@ public class CalcController {
             equationText.appendText("^2");
         });
 
+        calcButton.setOnAction(event ->{handleCalculations();});
+
         clearButton.setOnAction(event-> equationText.clear());
 
+    }
+
+    private void handleCalculations(){
+        if(CalculatorLogic.checkSyntax(equationText.getText())){
+            Calculation newEquation = new Calculation(equationText.getText());
+            try {
+                equationText.setText(String.valueOf(CalculatorLogic.evaluate(equationText.getText())));
+                newEquation.setResult(equationText.getText());
+                equationList.add(newEquation);
+            }catch(ScriptException e){
+                equationList.add(newEquation);
+            }
+        }else{
+            System.out.println("Invalid equation");
+        }
     }
 }
