@@ -8,7 +8,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyCode;
+
+import javafx.scene.layout.VBox;
 
 import javax.script.ScriptException;
 
@@ -16,6 +20,9 @@ public class CalcController {
 
     @FXML
     private Tab advancedMathTab;
+
+    @FXML
+    private Button binomialButton;
 
     @FXML
     private Tab basicMathTab;
@@ -66,7 +73,16 @@ public class CalcController {
     private Tab infoTab;
 
     @FXML
+    private TextArea infoText;
+
+    @FXML
+    private TabPane innerCalcTabPane;
+
+    @FXML
     private Button leftBracketButton;
+
+    @FXML
+    private TabPane mainTabPane;
 
     @FXML
     private Button multButton;
@@ -113,6 +129,30 @@ public class CalcController {
     @FXML
     private Button zeroButton;
 
+    @FXML
+    private VBox calcScreenBox;
+
+    @FXML
+    private Button combinationButton;
+
+    @FXML
+    private Button muavreButton;
+
+    @FXML
+    private Button permutationButton;
+
+    @FXML
+    private Button poissonButton;
+
+    @FXML
+    private Button moveLeft;
+
+    @FXML
+    private Button moveRight;
+
+    @FXML
+    private Button geometricProgressionButton;
+
     ObservableList<Calculation> equationList = FXCollections.observableArrayList();
 
 
@@ -128,65 +168,93 @@ public class CalcController {
             }
         });
 
+        sqRootButton.setOnAction(event ->{
+
+        });
+
+        moveLeft.setOnAction(event -> {
+            equationText.positionCaret(equationText.getCaretPosition() - 1);
+            equationText.requestFocus();
+        });
+        moveRight.setOnAction(event -> {
+            equationText.positionCaret(equationText.getCaretPosition() + 1);
+            equationText.requestFocus();
+        });
+
         zeroButton.setOnAction(event -> {
-            equationText.appendText("0");
+            insertAtCaret("0");
         });
         oneButton.setOnAction(event -> {
-            equationText.appendText("1");
+            insertAtCaret("1");
         });
         twoButton.setOnAction(event -> {
-            equationText.appendText("2");
+            insertAtCaret("2");
         });
         threeButton.setOnAction(event -> {
-            equationText.appendText("3");
+            insertAtCaret("3");
         });
         fourButton.setOnAction(event -> {
-            equationText.appendText("4");
+            insertAtCaret("4");
         });
         fiveButton.setOnAction(event -> {
-            equationText.appendText("5");
+            insertAtCaret("5");
         });
         sixButton.setOnAction(event -> {
-            equationText.appendText("6");
+            insertAtCaret("6");
         });
         sevenButton.setOnAction(event -> {
-            equationText.appendText("7");
+            insertAtCaret("7");
         });
         eightButton.setOnAction(event -> {
-            equationText.appendText("8");
+            insertAtCaret("8");
         });
         neinButton.setOnAction(event -> {
-            equationText.appendText("9");
+            insertAtCaret("9");
         });
         dotButton.setOnAction(event -> {
-            equationText.appendText(".");
+            insertAtCaret(".");
         });
         multButton.setOnAction(event -> {
-            equationText.appendText("*");
+            insertAtCaret("*");
         });
         plusButton.setOnAction(event -> {
-            equationText.appendText("+");
+            insertAtCaret("+");
         });
         subButton.setOnAction(event -> {
-            equationText.appendText("-");
+            insertAtCaret("-");
         });
         divisionButton.setOnAction(event -> {
-            equationText.appendText("/");
+            insertAtCaret("/");
         });
         leftBracketButton.setOnAction(event -> {
-            equationText.appendText("(");
+            insertAtCaret("(");
         });
         rightBracketButton.setOnAction(event -> {
-            equationText.appendText(")");
+            insertAtCaret(")");
         });
         squareButton.setOnAction(event -> {
-            equationText.appendText("^2");
+            insertAtCaret("^2");
         });
 
         calcButton.setOnAction(event ->{handleCalculations();});
 
         clearButton.setOnAction(event-> equationText.clear());
 
+        historyTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                equationText.clear();
+                equationText.setText(newSelection.getEquation());
+                mainTabPane.getSelectionModel().select(calcTab);
+                historyTable.getSelectionModel().select(-1);
+            }
+        });
+
+    }
+    
+    
+    private void insertAtCaret(String text) {
+        equationText.insertText(equationText.getCaretPosition(), text);
+        equationText.requestFocus();
     }
 
     private void handleCalculations(){

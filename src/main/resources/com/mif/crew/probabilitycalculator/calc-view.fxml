@@ -29,19 +29,19 @@
             </Label>
          </center>
       </BorderPane>
-      <TabPane prefHeight="614.0" prefWidth="406.0" style="-fx-background-color: gray;" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+      <TabPane fx:id="mainTabPane" prefHeight="614.0" prefWidth="406.0" style="-fx-background-color: gray;" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
         <tabs>
           <Tab fx:id="calcTab" text="Calculator">
                <content>
                   <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <TextArea fx:id="equationText" nodeOrientation="LEFT_TO_RIGHT" prefHeight="98.0" prefWidth="415.0" scrollLeft="100.0" style="-fx-font-size: 30;">
+                        <TextArea fx:id="equationText" nodeOrientation="LEFT_TO_RIGHT" prefHeight="98.0" prefWidth="415.0" scrollLeft="100.0" style="-fx-font-size: 30;" VBox.vgrow="ALWAYS">
                            <cursor>
                               <Cursor fx:constant="NONE" />
                            </cursor></TextArea>
                         <VBox prefHeight="457.0" prefWidth="406.0">
                            <children>
-                              <TabPane prefHeight="459.0" prefWidth="406.0" style="-fx-background-color: #DADADA;" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+                              <TabPane fx:id="innerCalcTabPane" prefHeight="459.0" prefWidth="406.0" style="-fx-background-color: #DADADA;" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
                                 <tabs>
                                   <Tab fx:id="basicMathTab" text="Basic">
                                        <content>
@@ -67,7 +67,7 @@
                                                       <Button fx:id="sevenButton" mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #F2F2F2;" text="7" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                       <Button fx:id="fourButton" mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #F2F2F2;" text="4" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                                       <Button fx:id="oneButton" mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #F2F2F2;" text="1" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                                      <Button mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #D9FDD3;" text="?" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                                      <Button fx:id="moveRight" mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #A9FeD3;" text="-&gt;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                                                       <Button fx:id="rightBracketButton" mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #D9FDD3;" text=")" GridPane.columnIndex="2" />
                                                       <Button fx:id="divisionButton" mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #D9FDD3;" text="/" GridPane.columnIndex="3" />
                                                       <Button fx:id="multButton" mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #D9FDD3;" text="*" GridPane.columnIndex="4" />
@@ -86,7 +86,7 @@
                                                       <Button fx:id="squareButton" mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #D9FDD3;" text="x^2" GridPane.rowIndex="1" />
                                                       <Button fx:id="sqRootButton" mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #D9FDD3;" text="√x" GridPane.rowIndex="2" />
                                                       <Button fx:id="raisePowerButton" mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #D9FDD3;" text="x^y" GridPane.rowIndex="3" />
-                                                      <Button mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #D9FDD3;" text="?" GridPane.rowIndex="4" />
+                                                      <Button fx:id="moveLeft" mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #A9FeD3;" text="&lt;-" GridPane.rowIndex="4" />
                                                       <Button fx:id="clearButton" mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #FF6666;" text="C" />
                                                    </children>
                                                 </GridPane>
@@ -94,6 +94,33 @@
                                           </VBox>
                                        </content>
                                   </Tab>
+                                    <Tab text="Probabilities">
+                                       <content>
+                                          <VBox prefHeight="200.0" prefWidth="100.0">
+                                             <children>
+                                                <GridPane hgap="5.0" vgap="5.0" VBox.vgrow="ALWAYS">
+                                                  <columnConstraints>
+                                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                  </columnConstraints>
+                                                  <rowConstraints>
+                                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                  </rowConstraints>
+                                                   <children>
+                                                      <Button fx:id="combinationButton" mnemonicParsing="false" prefHeight="142.0" prefWidth="206.0" style="-fx-background-color: #B2DFDB; -fx-font-weight: bold;" text="C(n,k)" GridPane.columnIndex="1" />
+                                                      <Button fx:id="geometricProgressionButton" mnemonicParsing="false" prefHeight="142.0" prefWidth="206.0" style="-fx-background-color: #B2DFDB; -fx-font-weight: bold;" text="P(X=k)" GridPane.rowIndex="1" />
+                                                      <Button fx:id="binomialButton" mnemonicParsing="false" prefHeight="142.0" prefWidth="206.0" style="-fx-background-color: #B2DFDB; -fx-font-weight: bold;" text="X~Bin(n,p)" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                      <Button fx:id="poissonButton" mnemonicParsing="false" prefHeight="142.0" prefWidth="206.0" style="-fx-background-color: #B2DFDB; -fx-font-weight: bold;" text="Poisson aproximation" GridPane.rowIndex="2" />
+                                                      <Button fx:id="muavreButton" mnemonicParsing="false" prefHeight="142.0" prefWidth="206.0" style="-fx-background-color: #B2DFDB; -fx-font-weight: bold;" text="Muavre/Laplace aproximation" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                      <Button fx:id="permutationButton" mnemonicParsing="false" prefHeight="142.0" prefWidth="206.0" style="-fx-background-color: #B2DFDB; -fx-font-weight: bold;" text="P(n,k)" />
+                                                   </children>
+                                                </GridPane>
+                                             </children>
+                                          </VBox>
+                                       </content>
+                                    </Tab>
                                   <Tab fx:id="advancedMathTab" text="Advanced">
                                        <content>
                                           <VBox prefHeight="438.0" prefWidth="406.0" />
@@ -138,7 +165,10 @@
             </Tab>
             <Tab fx:id="infoTab" text="Info">
                <content>
-                  <VBox prefHeight="547.0" prefWidth="406.0" />
+                  <VBox prefHeight="547.0" prefWidth="406.0">
+                     <children>
+                        <TextArea fx:id="infoText" prefHeight="556.0" prefWidth="406.0" wrapText="true" VBox.vgrow="ALWAYS" />
+                     </children></VBox>
                </content>
             </Tab>
         </tabs>
