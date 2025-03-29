@@ -47,7 +47,7 @@
                                        <content>
                                           <VBox prefHeight="470.0" prefWidth="406.0">
                                              <children>
-                                                <GridPane hgap="5.0" prefHeight="437.0" prefWidth="406.0" vgap="5.0" VBox.vgrow="ALWAYS">
+                                                <GridPane gridLinesVisible="true" prefHeight="437.0" prefWidth="406.0" VBox.vgrow="ALWAYS">
                                                   <columnConstraints>
                                                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -63,31 +63,31 @@
                                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                   </rowConstraints>
                                                    <children>
-                                                      <Button fx:id="leftBracketButton" mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #D9FDD3;" text="(" GridPane.columnIndex="1" />
-                                                      <Button fx:id="sevenButton" mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #F2F2F2;" text="7" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                      <Button fx:id="fourButton" mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #F2F2F2;" text="4" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                      <Button fx:id="oneButton" mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #F2F2F2;" text="1" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                                      <Button fx:id="moveRight" mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #A9FeD3;" text="-&gt;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                                      <Button fx:id="rightBracketButton" mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #D9FDD3;" text=")" GridPane.columnIndex="2" />
-                                                      <Button fx:id="divisionButton" mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #D9FDD3;" text="/" GridPane.columnIndex="3" />
-                                                      <Button fx:id="multButton" mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #D9FDD3;" text="*" GridPane.columnIndex="4" />
-                                                      <Button fx:id="eightButton" mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #F2F2F2;" text="8" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                                      <Button fx:id="neinButton" mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #F2F2F2;" text="9" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                                                      <Button fx:id="subButton" mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #D9FDD3;" text="-" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-                                                      <Button fx:id="fiveButton" mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #F2F2F2;" text="5" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                                      <Button fx:id="sixButton" mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #F2F2F2;" text="6" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                                                      <Button fx:id="plusButton" mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #D9FDD3;" text="+" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-                                                      <Button fx:id="twoButton" mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #F2F2F2;" text="2" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                                                      <Button fx:id="threeButton" mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #F2F2F2;" text="3" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                                                      <Button fx:id="calcButton" mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #66BB6A;" text="=" GridPane.columnIndex="4" GridPane.rowIndex="3" />
-                                                      <Button fx:id="zeroButton" mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #F2F2F2;" text="0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                                                      <Button fx:id="dotButton" mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #D9FDD3;" text="." GridPane.columnIndex="3" GridPane.rowIndex="4" />
-                                                      <Button mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #D9FDD3;" text="?" GridPane.columnIndex="4" GridPane.rowIndex="4" />
-                                                      <Button fx:id="squareButton" mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #D9FDD3;" text="x^2" GridPane.rowIndex="1" />
-                                                      <Button fx:id="sqRootButton" mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #D9FDD3;" text="√x" GridPane.rowIndex="2" />
-                                                      <Button fx:id="raisePowerButton" mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #D9FDD3;" text="x^y" GridPane.rowIndex="3" />
-                                                      <Button fx:id="moveLeft" mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #A9FeD3;" text="&lt;-" GridPane.rowIndex="4" />
-                                                      <Button fx:id="clearButton" mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #FF6666;" text="C" />
+                                                      <Button fx:id="leftBracketButton" mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #D9FDD3; -fx-font-weight: bold;" text="(" GridPane.columnIndex="2" />
+                                                      <Button fx:id="sevenButton" mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #F2F2F2; -fx-font-weight: bold;" text="7" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                      <Button fx:id="fourButton" mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #F2F2F2; -fx-font-weight: bold;" text="4" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                      <Button fx:id="oneButton" mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #F2F2F2; -fx-font-weight: bold;" text="1" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                                      <Button fx:id="moveRight" mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #A9FeD3; -fx-font-weight: bold;" text="-&gt;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                                      <Button fx:id="rightBracketButton" mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #D9FDD3; -fx-font-weight: bold;" text=")" GridPane.columnIndex="3" />
+                                                      <Button fx:id="divisionButton" mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #D9FDD3; -fx-font-weight: bold;" text="/" GridPane.columnIndex="4" />
+                                                      <Button fx:id="multButton" mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #D9FDD3; -fx-font-weight: bold;" text="*" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                                                      <Button fx:id="eightButton" mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #F2F2F2; -fx-font-weight: bold;" text="8" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                                      <Button fx:id="neinButton" mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #F2F2F2; -fx-font-weight: bold;" text="9" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                                      <Button fx:id="subButton" mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #D9FDD3; -fx-font-weight: bold;" text="-" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                                                      <Button fx:id="fiveButton" mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #F2F2F2; -fx-font-weight: bold;" text="5" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                                      <Button fx:id="sixButton" mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #F2F2F2; -fx-font-weight: bold;" text="6" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                                                      <Button fx:id="plusButton" mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #D9FDD3; -fx-font-weight: bold;" text="+" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                                                      <Button fx:id="twoButton" mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #F2F2F2; -fx-font-weight: bold;" text="2" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                                      <Button fx:id="threeButton" mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #F2F2F2; -fx-font-weight: bold;" text="3" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                                                      <Button fx:id="calcButton" mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #66BB6A; -fx-font-weight: bold;" text="=" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+                                                      <Button fx:id="zeroButton" mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #F2F2F2; -fx-font-weight: bold;" text="0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                                                      <Button fx:id="dotButton" mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #D9FDD3; -fx-font-weight: bold;" text="." GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                                                      <Button fx:id="deleteButton" mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #FF6666; -fx-font-weight: bold;" text="⌫" GridPane.columnIndex="1" />
+                                                      <Button fx:id="squareButton" mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #D9FDD3; -fx-font-weight: bold;" text="x^2" GridPane.rowIndex="1" />
+                                                      <Button fx:id="sqRootButton" mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #D9FDD3; -fx-font-weight: bold;" text="√x" GridPane.rowIndex="2" />
+                                                      <Button fx:id="raisePowerButton" mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #D9FDD3; -fx-font-weight: bold;" text="x^y" GridPane.rowIndex="3" />
+                                                      <Button fx:id="moveLeft" mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #A9FeD3; -fx-font-weight: bold;" text="&lt;-" GridPane.rowIndex="4" />
+                                                      <Button fx:id="clearButton" mnemonicParsing="false" prefHeight="94.0" prefWidth="127.0" style="-fx-background-color: #FF6666; -fx-font-weight: bold;" text="C" />
                                                    </children>
                                                 </GridPane>
                                              </children>
@@ -98,7 +98,7 @@
                                        <content>
                                           <VBox prefHeight="200.0" prefWidth="100.0">
                                              <children>
-                                                <GridPane hgap="5.0" vgap="5.0" VBox.vgrow="ALWAYS">
+                                                <GridPane gridLinesVisible="true" VBox.vgrow="ALWAYS">
                                                   <columnConstraints>
                                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
