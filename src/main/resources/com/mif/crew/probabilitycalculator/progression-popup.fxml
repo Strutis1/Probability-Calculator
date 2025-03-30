@@ -1,14 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.mif.crew.probabilitycalculator.ProgressionPopupController"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="343.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mif.crew.probabilitycalculator.ProgressionPopupController">
+    <children>
+        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="400.0" text="Enter the first term value:" />
+        <TextField fx:id="aValue" style="-fx-background-color: lightgray;">
+            <VBox.margin>
+                <Insets left="50.0" right="50.0" />
+            </VBox.margin>
+      </TextField>
+        <Label alignment="CENTER" prefHeight="50.0" prefWidth="400.0" text="Enter the common ratio:" />
+        <TextField fx:id="rValue" style="-fx-background-color: lightgray;">
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+            <VBox.margin>
+                <Insets left="50.0" right="50.0" />
+            </VBox.margin>
+      </TextField>
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="400.0" text="Enter the number of terms(enter &quot;-&quot; if infinite)">
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </Label>
+      <TextField fx:id="nValue" style="-fx-background-color: lightgray;">
+         <VBox.margin>
+            <Insets bottom="10.0" left="50.0" right="50.0" />
+         </VBox.margin>
+      </TextField>
+      <HBox alignment="CENTER" prefHeight="44.0" prefWidth="400.0">
+         <children>
+              <Button fx:id="sumButton" mnemonicParsing="false" prefHeight="38.0" prefWidth="80.0" style="-fx-background-color: gray;" text="Sum">
+               <HBox.margin>
+                  <Insets right="50.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="nthTermButton" mnemonicParsing="false" prefHeight="38.0" prefWidth="80.0" style="-fx-background-color: gray;" text="Nth term" />
+         </children>
+      </HBox>
+    </children>
+</VBox>

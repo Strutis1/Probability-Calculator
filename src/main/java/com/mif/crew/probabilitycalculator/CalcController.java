@@ -232,33 +232,61 @@ public class CalcController {
             }
         });
 
-        permutationButton.setOnAction(event ->
-                openPopUp(Constants.PERMUTATIONFXML, data -> {
-                    Calculation entry = new Calculation (data.getEquation(), data.getResult());
-                    equationList.add(entry);
-                })
+        permutationButton.setOnAction(event -> openPopUp(Constants.PERMUTATIONFXML, data -> {
+            if(data.getEquation() != null && !data.getEquation().isEmpty() && data.getResult() != null) {
+                Calculation entry = new Calculation(data.getEquation(), data.getResult());
+                equationList.add(entry);
+                equationText.setText(entry.getResult());
+                data.clear();
+            }
+        })
         );
 
         combinationButton.setOnAction(event -> openPopUp(Constants.COMBINATIONFXML, data -> {
-                    Calculation entry = new Calculation (data.getEquation(), data.getResult());
-                    equationList.add(entry);
-                }));
+            if(data.getEquation() != null && !data.getEquation().isEmpty() && data.getResult() != null) {
+                Calculation entry = new Calculation(data.getEquation(), data.getResult());
+                equationList.add(entry);
+                equationText.setText(entry.getResult());
+                data.clear();
+            }
+        })
+        );
         geometricProgressionButton.setOnAction(event -> openPopUp(Constants.PROGRESSIONFXML, data -> {
-                    Calculation entry = new Calculation (data.getEquation(), data.getResult());
-                    equationList.add(entry);
-                }));
+            if(data.getEquation() != null && !data.getEquation().isEmpty() && data.getResult() != null) {
+                Calculation entry = new Calculation(data.getEquation(), data.getResult());
+                equationList.add(entry);
+                equationText.setText(entry.getResult());
+                data.clear();
+            }
+        })
+        );
         binomialButton.setOnAction(event -> openPopUp(Constants.BINOMIALFXML, data -> {
-                    Calculation entry = new Calculation (data.getEquation(), data.getResult());
-                    equationList.add(entry);
-                }));
+            if(data.getEquation() != null && !data.getEquation().isEmpty() && data.getResult() != null) {
+                Calculation entry = new Calculation(data.getEquation(), data.getResult());
+                equationList.add(entry);
+                equationText.setText(entry.getResult());
+                data.clear();
+            }
+        })
+        );
         poissonButton.setOnAction(event -> openPopUp(Constants.POISSONFXML, data -> {
-                    Calculation entry = new Calculation (data.getEquation(), data.getResult());
-                    equationList.add(entry);
-                }));
+            if(data.getEquation() != null && !data.getEquation().isEmpty() && data.getResult() != null) {
+                Calculation entry = new Calculation(data.getEquation(), data.getResult());
+                equationList.add(entry);
+                equationText.setText(entry.getResult());
+                data.clear();
+            }
+        })
+        );
         muavreButton.setOnAction(event -> openPopUp(Constants.MUAVREANDLAPLACEFXML, data -> {
-                    Calculation entry = new Calculation (data.getEquation(), data.getResult());
-                    equationList.add(entry);
-                }));
+            if(data.getEquation() != null && !data.getEquation().isEmpty() && data.getResult() != null) {
+                Calculation entry = new Calculation(data.getEquation(), data.getResult());
+                equationList.add(entry);
+                equationText.setText(entry.getResult());
+                data.clear();
+            }
+        })
+        );
     }
 
 

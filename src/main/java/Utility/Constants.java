@@ -48,13 +48,15 @@ public class Constants {
             "                        \"  - P(a ≤ X ≤ b) ≈ Φ((b + 0.5 - μ) / σ) - Φ((a - 0.5 - μ) / σ)\\n\" +\n" +
             "                        \"  (Φ(z) is the cumulative distribution function of the standard normal distribution)\\n\"";
     public static String PERMUTATIONFXML = "permutation-popup.fxml";
-    public static String PERMUTATIONFORMULA = "n! / (n - r)!";
+    public static String PERMUTATIONFORMULA = "(n)! / ((n) - (r))!";
     public static String COMBINATIONFXML = "combination-popup.fxml";
-    public static String COMBINATIONFORMULA;
+    public static String COMBINATIONFORMULA = "(n)! / ((r)! * ((n) - (r))!)";
     public static String PROGRESSIONFXML = "progression-popup.fxml";
-    public static String PROGRESSIONFORMULA;
+    public static String PROGRESSIONFINITESUMFORMULA = "(a) * (1 - (r)^(n)) / (1 - (r))";
+    public static String PROGRESSIONINFINITESUMFORMULA = "(a) / (1 - (r))";
+    public static String PROGRESSIONTERMFORMULA = "(a) * (r)^((n) - 1)";
     public static String BINOMIALFXML = "binomial-popup.fxml";
-    public static String BINOMIALFORMULA;
+    public static String BINOMIALFORMULA = "(n)! / (n()! * ((n) - (k))!) * (p)^(k) * (1 - (p))^((n) - (k))";
     public static String POISSONFXML = "poisson-popup.fxml";
     public static String POISSONFORMULA;
     public static String MUAVREANDLAPLACEFXML = "muavre-and-laplace-popup.fxml";

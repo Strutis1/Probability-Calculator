@@ -29,4 +29,9 @@ public class DataHolder {
         return result;
     }
 
+    public void clear(){
+        this.equation = null;
+        this.result = null;
+    }
+
 }
