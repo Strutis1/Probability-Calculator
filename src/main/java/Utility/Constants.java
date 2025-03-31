@@ -1,5 +1,8 @@
 package Utility;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 public class Constants {
     public static String INFO = "\uD83D\uDCD8 General Info and How to Use\\n\\n\" +\n" +
             "\n" +
@@ -56,9 +59,12 @@ public class Constants {
     public static String PROGRESSIONINFINITESUMFORMULA = "(a) / (1 - (r))";
     public static String PROGRESSIONTERMFORMULA = "(a) * (r)^((n) - 1)";
     public static String BINOMIALFXML = "binomial-popup.fxml";
-    public static String BINOMIALFORMULA = "(n)! / (n()! * ((n) - (k))!) * (p)^(k) * (1 - (p))^((n) - (k))";
+    public static String BINOMIALFORMULA = "((n)! / ((k)! * ((n) - (k))!)) * ((p)^(k)) * ((1 - (p))^((n) - (k)))";
     public static String POISSONFXML = "poisson-popup.fxml";
     public static String POISSONFORMULA;
     public static String MUAVREANDLAPLACEFXML = "muavre-and-laplace-popup.fxml";
     public static String MUAVREANDLAPLACEFORMULA;
+
+
+    public static ObservableList<String> MASSOPTIONS = FXCollections.observableArrayList("Sum", "Product");
 }

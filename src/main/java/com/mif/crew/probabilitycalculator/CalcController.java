@@ -5,6 +5,7 @@ import Utility.CalculatorLogic;
 import Utility.Constants;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
 import javafx.scene.control.*;
@@ -154,9 +155,21 @@ public class CalcController {
     @FXML
     private Button geometricProgressionButton;
 
+    @FXML
+    private Button confirmButton;
+
+    @FXML
+    private Button goToButton;
+
+    @FXML
+    private ComboBox<String> massOptions;
+
+
+
     ObservableList<Calculation> equationList = FXCollections.observableArrayList();
 
     //TODO make history table more usable, delete, add on to current equation, sum up multiple history entries and so on
+    //TODO make a popup to history so we either add equations or results for better readability
 
 
     public void initialize(){
@@ -164,8 +177,7 @@ public class CalcController {
         equationColumn.setCellValueFactory(cellData -> cellData.getValue().equationProperty());
         resultColumn.setCellValueFactory(cellData -> cellData.getValue().resultProperty());
 
-        infoText.setText(Constants.INFO
-        );
+        infoText.setText(Constants.INFO);
         infoText.setWrapText(true);
         infoText.setEditable(false);
 
@@ -223,14 +235,29 @@ public class CalcController {
             equationText.requestFocus();
         });
 
+        historyTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
         historyTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
-                equationText.clear();
-                equationText.setText(newSelection.getEquation());
-                mainTabPane.getSelectionModel().select(calcTab);
-                historyTable.getSelectionModel().select(-1);
+                if(historyTable.getSelectionModel().getSelectedItems().size() == 1){
+                    goToButton.setDisable(false);
+                }else{
+                    goToButton.setDisable(true);
+                }
             }
         });
+
+        goToButton.setOnAction(event -> {
+            equationText.clear();
+            equationText.setText(historyTable.getSelectionModel().getSelectedItem().getEquation());
+            mainTabPane.getSelectionModel().select(calcTab);
+            historyTable.getSelectionModel().select(-1);
+            equationText.positionCaret(equationText.getText().length());
+        });
+
+        massOptions.setItems(Constants.MASSOPTIONS);
+
+        confirmButton.setOnAction(this::handleOptions);
 
         permutationButton.setOnAction(event -> openPopUp(Constants.PERMUTATIONFXML, data -> {
             if(data.getEquation() != null && !data.getEquation().isEmpty() && data.getResult() != null) {
@@ -287,6 +314,45 @@ public class CalcController {
             }
         })
         );
+    }
+
+    private void handleOptions(ActionEvent actionEvent) {
+        if(!massOptions.getValue().isEmpty()){
+            if(massOptions.getValue().equals("Sum")){
+                handleHistorySummation();
+            }else{
+                handleHistoryMultiplication();
+            }
+        }
+    }
+
+    private void handleHistoryMultiplication() {
+        Calculation[] selections = historyTable.getSelectionModel().getSelectedItems().toArray(new Calculation[0]);
+        StringBuilder equation = new StringBuilder();
+        for (int i = 0; i < selections.length; ++i) {
+            if (i > 0) equation.append("*(");
+            else equation.append("(");
+            equation.append(selections[i].getEquation()).append(")");
+        }
+        equationText.clear();
+        equationText.setText(equation.toString());
+        mainTabPane.getSelectionModel().select(calcTab);
+        historyTable.getSelectionModel().select(-1);
+        equationText.positionCaret(equationText.getText().length());
+    }
+
+    private void handleHistorySummation() {
+        Calculation[] selections = historyTable.getSelectionModel().getSelectedItems().toArray(new Calculation[0]);
+        StringBuilder equation = new StringBuilder();
+        for (int i = 0; i < selections.length; i++) {
+            if (i > 0) equation.append("+");
+            equation.append(selections[i].getEquation());
+        }
+        equationText.clear();
+        equationText.setText(equation.toString());
+        mainTabPane.getSelectionModel().select(calcTab);
+        historyTable.getSelectionModel().select(-1);
+        equationText.positionCaret(equationText.getText().length());
     }
 
 
