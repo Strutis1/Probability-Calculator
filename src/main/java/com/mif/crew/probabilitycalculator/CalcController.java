@@ -147,6 +147,15 @@ public class CalcController {
     private Button poissonButton;
 
     @FXML
+    private Button geometricRandVarButton;
+
+    @FXML
+    private Button poissonRandVarButton;
+
+    @FXML
+    private TextArea resultArea;
+
+    @FXML
     private Button moveLeft;
 
     @FXML
@@ -185,6 +194,12 @@ public class CalcController {
             if(event.getCode() == KeyCode.ENTER){
                 handleCalculations();
                 equationText.positionCaret(equationText.getText().length());
+                String currentText = equationText.getText();
+                String cleaned = currentText.replace("\n", "").replace("\r", "");
+                equationText.setText(cleaned);
+                equationText.positionCaret(cleaned.length());
+
+                event.consume();
             }
         });
 
@@ -232,6 +247,7 @@ public class CalcController {
 
         clearButton.setOnAction(event-> {
             equationText.clear();
+            resultArea.clear();
             equationText.requestFocus();
         });
 
@@ -241,8 +257,12 @@ public class CalcController {
             if (newSelection != null) {
                 if(historyTable.getSelectionModel().getSelectedItems().size() == 1){
                     goToButton.setDisable(false);
+                    confirmButton.setDisable(true);
+                    massOptions.setDisable(true);
                 }else{
                     goToButton.setDisable(true);
+                    confirmButton.setDisable(false);
+                    massOptions.setDisable(false);
                 }
             }
         });
@@ -250,6 +270,7 @@ public class CalcController {
         goToButton.setOnAction(event -> {
             equationText.clear();
             equationText.setText(historyTable.getSelectionModel().getSelectedItem().getEquation());
+            resultArea.setText(historyTable.getSelectionModel().getSelectedItem().getResult());
             mainTabPane.getSelectionModel().select(calcTab);
             historyTable.getSelectionModel().select(-1);
             equationText.positionCaret(equationText.getText().length());
@@ -263,7 +284,8 @@ public class CalcController {
             if(data.getEquation() != null && !data.getEquation().isEmpty() && data.getResult() != null) {
                 Calculation entry = new Calculation(data.getEquation(), data.getResult());
                 equationList.add(entry);
-                equationText.setText(entry.getResult());
+                resultArea.setText(entry.getResult());
+                equationText.setText(entry.getEquation());
                 data.clear();
             }
         })
@@ -273,7 +295,8 @@ public class CalcController {
             if(data.getEquation() != null && !data.getEquation().isEmpty() && data.getResult() != null) {
                 Calculation entry = new Calculation(data.getEquation(), data.getResult());
                 equationList.add(entry);
-                equationText.setText(entry.getResult());
+                resultArea.setText(entry.getResult());
+                equationText.setText(entry.getEquation());
                 data.clear();
             }
         })
@@ -282,7 +305,8 @@ public class CalcController {
             if(data.getEquation() != null && !data.getEquation().isEmpty() && data.getResult() != null) {
                 Calculation entry = new Calculation(data.getEquation(), data.getResult());
                 equationList.add(entry);
-                equationText.setText(entry.getResult());
+                resultArea.setText(entry.getResult());
+                equationText.setText(entry.getEquation());
                 data.clear();
             }
         })
@@ -291,7 +315,8 @@ public class CalcController {
             if(data.getEquation() != null && !data.getEquation().isEmpty() && data.getResult() != null) {
                 Calculation entry = new Calculation(data.getEquation(), data.getResult());
                 equationList.add(entry);
-                equationText.setText(entry.getResult());
+                resultArea.setText(entry.getResult());
+                equationText.setText(entry.getEquation());
                 data.clear();
             }
         })
@@ -300,7 +325,8 @@ public class CalcController {
             if(data.getEquation() != null && !data.getEquation().isEmpty() && data.getResult() != null) {
                 Calculation entry = new Calculation(data.getEquation(), data.getResult());
                 equationList.add(entry);
-                equationText.setText(entry.getResult());
+                resultArea.setText(entry.getResult());
+                equationText.setText(entry.getEquation());
                 data.clear();
             }
         })
@@ -309,7 +335,8 @@ public class CalcController {
             if(data.getEquation() != null && !data.getEquation().isEmpty() && data.getResult() != null) {
                 Calculation entry = new Calculation(data.getEquation(), data.getResult());
                 equationList.add(entry);
-                equationText.setText(entry.getResult());
+                resultArea.setText(entry.getResult());
+                equationText.setText(entry.getEquation());
                 data.clear();
             }
         })
@@ -329,16 +356,24 @@ public class CalcController {
     private void handleHistoryMultiplication() {
         Calculation[] selections = historyTable.getSelectionModel().getSelectedItems().toArray(new Calculation[0]);
         StringBuilder equation = new StringBuilder();
+        if (selections.length == 0) return;
         for (int i = 0; i < selections.length; ++i) {
             if (i > 0) equation.append("*(");
             else equation.append("(");
-            equation.append(selections[i].getEquation()).append(")");
+            equation.append(selections[i].getEquation().replaceAll("\\s+", ""));
+            equation.append(")");
         }
-        equationText.clear();
-        equationText.setText(equation.toString());
-        mainTabPane.getSelectionModel().select(calcTab);
-        historyTable.getSelectionModel().select(-1);
-        equationText.positionCaret(equationText.getText().length());
+        try {
+            resultArea.clear();
+            resultArea.setText(String.valueOf(CalculatorLogic.evaluate(equation.toString())));
+            equationText.clear();
+            equationText.setText(equation.toString());
+            mainTabPane.getSelectionModel().select(calcTab);
+            historyTable.getSelectionModel().select(-1);
+            equationText.positionCaret(equationText.getText().length());
+        }catch (ScriptException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void handleHistorySummation() {
@@ -346,13 +381,18 @@ public class CalcController {
         StringBuilder equation = new StringBuilder();
         for (int i = 0; i < selections.length; i++) {
             if (i > 0) equation.append("+");
-            equation.append(selections[i].getEquation());
+            equation.append("(").append(selections[i].getEquation().replaceAll("\\s+", "")).append(")");
         }
-        equationText.clear();
-        equationText.setText(equation.toString());
-        mainTabPane.getSelectionModel().select(calcTab);
-        historyTable.getSelectionModel().select(-1);
-        equationText.positionCaret(equationText.getText().length());
+        try {
+            resultArea.setText(String.valueOf(CalculatorLogic.evaluate(equation.toString())));
+            equationText.clear();
+            equationText.setText(equation.toString());
+            mainTabPane.getSelectionModel().select(calcTab);
+            historyTable.getSelectionModel().select(-1);
+            equationText.positionCaret(equationText.getText().length());
+        }catch (ScriptException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 
@@ -371,8 +411,8 @@ public class CalcController {
         if(CalculatorLogic.checkSyntax(equationText.getText())){
             Calculation newEquation = new Calculation(equationText.getText());
             try {
-                equationText.setText(String.valueOf(CalculatorLogic.evaluate(equationText.getText())));
-                newEquation.setResult(equationText.getText());
+                resultArea.setText(String.valueOf(CalculatorLogic.evaluate(equationText.getText())));
+                newEquation.setResult(resultArea.getText());
                 equationList.add(newEquation);
             }catch(ScriptException e){
                 equationList.add(newEquation);

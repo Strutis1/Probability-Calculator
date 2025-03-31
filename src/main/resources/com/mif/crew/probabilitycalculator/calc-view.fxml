@@ -38,13 +38,21 @@
                <content>
                   <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <TextArea fx:id="equationText" nodeOrientation="LEFT_TO_RIGHT" prefHeight="98.0" prefWidth="415.0" scrollLeft="100.0" style="-fx-font-size: 30;" VBox.vgrow="ALWAYS">
+                        <TextArea fx:id="resultArea" editable="false" nodeOrientation="LEFT_TO_RIGHT" opacity="0.6" prefHeight="43.0" prefWidth="406.0" scrollLeft="100.0" style="-fx-font-size: 20;" VBox.vgrow="ALWAYS">
+                           <cursor>
+                              <Cursor fx:constant="NONE" />
+                           </cursor>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </TextArea>
+                        <TextArea fx:id="equationText" nodeOrientation="LEFT_TO_RIGHT" prefHeight="98.0" prefWidth="415.0" scrollLeft="100.0" style="-fx-font-size: 20;" VBox.vgrow="ALWAYS">
                            <cursor>
                               <Cursor fx:constant="NONE" />
                            </cursor></TextArea>
                         <VBox prefHeight="457.0" prefWidth="406.0">
                            <children>
-                              <TabPane fx:id="innerCalcTabPane" prefHeight="459.0" prefWidth="406.0" style="-fx-background-color: #DADADA;" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+                              <TabPane fx:id="innerCalcTabPane" prefHeight="440.0" prefWidth="406.0" style="-fx-background-color: #DADADA;" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
                                 <tabs>
                                   <Tab fx:id="basicMathTab" text="Basic">
                                        <content>
@@ -110,14 +118,17 @@
                                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                   </rowConstraints>
                                                    <children>
-                                                      <Button fx:id="combinationButton" mnemonicParsing="false" prefHeight="142.0" prefWidth="206.0" style="-fx-background-color: #B2DFDB; -fx-font-weight: bold;" text="C(n,k)" GridPane.columnIndex="1" />
-                                                      <Button fx:id="geometricProgressionButton" mnemonicParsing="false" prefHeight="142.0" prefWidth="206.0" style="-fx-background-color: #B2DFDB; -fx-font-weight: bold;" text="P(X=k)" GridPane.rowIndex="1" />
-                                                      <Button fx:id="binomialButton" mnemonicParsing="false" prefHeight="142.0" prefWidth="206.0" style="-fx-background-color: #B2DFDB; -fx-font-weight: bold;" text="X~Bin(n,p)" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                      <Button fx:id="combinationButton" mnemonicParsing="false" prefHeight="142.0" prefWidth="206.0" style="-fx-background-color: #B2DFDB; -fx-font-weight: bold;" text="Combinations" GridPane.columnIndex="1" />
+                                                      <Button fx:id="geometricProgressionButton" mnemonicParsing="false" prefHeight="142.0" prefWidth="206.0" style="-fx-background-color: #B2DFDB; -fx-font-weight: bold;" text="Geometric progression" GridPane.rowIndex="1" />
+                                                      <Button fx:id="binomialButton" mnemonicParsing="false" prefHeight="142.0" prefWidth="206.0" style="-fx-background-color: #B2DFDB; -fx-font-weight: bold;" text="Binomial" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                       <Button fx:id="poissonButton" mnemonicParsing="false" prefHeight="142.0" prefWidth="206.0" style="-fx-background-color: #B2DFDB; -fx-font-weight: bold;" text="Poisson aproximation" GridPane.rowIndex="2" />
                                                       <Button fx:id="muavreButton" mnemonicParsing="false" prefHeight="142.0" prefWidth="206.0" style="-fx-background-color: #B2DFDB; -fx-font-weight: bold;" text="Muavre/Laplace aproximation" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                      <Button fx:id="permutationButton" mnemonicParsing="false" prefHeight="142.0" prefWidth="206.0" style="-fx-background-color: #B2DFDB; -fx-font-weight: bold;" text="P(n,k)" />
+                                                      <Button fx:id="permutationButton" mnemonicParsing="false" prefHeight="142.0" prefWidth="206.0" style="-fx-background-color: #B2DFDB; -fx-font-weight: bold;" text="Permutations" />
+                                                      <Button fx:id="geometricRandVarButton" mnemonicParsing="false" prefHeight="142.0" prefWidth="206.0" style="-fx-background-color: #B2DFDB; -fx-font-weight: bold;" text="Geometric random variable" GridPane.rowIndex="3" />
+                                                      <Button fx:id="poissonRandVarButton" mnemonicParsing="false" prefHeight="142.0" prefWidth="206.0" style="-fx-background-color: #B2DFDB; -fx-font-weight: bold;" text="Poisson random variable" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                                    </children>
                                                 </GridPane>
                                              </children>
@@ -164,12 +175,12 @@
                         </TableView>
                         <HBox alignment="CENTER" prefHeight="61.0" prefWidth="406.0">
                            <children>
-                              <ComboBox fx:id="massOptions" prefHeight="28.0" prefWidth="134.0">
+                              <ComboBox fx:id="massOptions" disable="true" prefHeight="28.0" prefWidth="134.0">
                                  <HBox.margin>
                                     <Insets left="20.0" right="20.0" />
                                  </HBox.margin>
                               </ComboBox>
-                              <Button fx:id="confirmButton" mnemonicParsing="false" prefHeight="38.0" prefWidth="108.0" style="-fx-background-color: white;" text="Confirm">
+                              <Button fx:id="confirmButton" disable="true" mnemonicParsing="false" prefHeight="38.0" prefWidth="108.0" style="-fx-background-color: white;" text="Confirm">
                                  <HBox.margin>
                                     <Insets right="20.0" />
                                  </HBox.margin>
